@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
-import { InitialStateComponent } from './initial-state/initial-state.component';
-import { EmptyStateComponent } from './empty-state/empty-state.component';
-import { SearchComponent } from './search/search.component';
-import { ResultsComponent } from './results/results.component';
-import { DetailComponent } from './detail/detail.component';
+import { LoginComponent } from './components/login/login.component';
+import { InitialStateComponent } from './components/initial-state/initial-state.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { SearchComponent } from './components/search/search.component';
+import { ResultsComponent } from './components/results/results.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [
