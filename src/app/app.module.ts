@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MaterialModule } from '../material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InitialStateComponent } from './components/initial-state/initial-state.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { SearchComponent } from './components/search/search.component';
-import { ResultsComponent } from './components/results/results.component';
-import { DetailComponent } from './components/detail/detail.component';
+import { ResultsComponent, DetailModal } from './components/results/results.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { DetailComponent } from './components/detail/detail.component';
     EmptyStateComponent,
     SearchComponent,
     ResultsComponent,
-    DetailComponent
+    DetailModal
   ],
   imports: [
     BrowserModule,
@@ -29,7 +29,8 @@ import { DetailComponent } from './components/detail/detail.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -40,8 +40,10 @@ export class SearchComponent implements OnInit {
     // create string
     status = Object.keys(status).join(',');
 
-    this.searchService.getPets(status).subscribe((data)=>{
-      this.pets = data;
+    this.searchService.getPets(status).subscribe((data :any)=>{
+      // return only unique results
+      this.pets = [...new Map(data.map((m :any) => [m.id, m])).values()];
+
       this.petsLength = Object.keys(data).length;
       this.firstSearch = true;
     });

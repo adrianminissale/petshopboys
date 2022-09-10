@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Pet Detail</h2>
+<div mat-dialog-content>
+  Name: {{pet.name}} <br />
+  Id: {{pet.id}} <br />
+  Category: {{pet.category.name}} <br />
+  Status: {{pet.status || '-'}} <br />
+  Tags: <span *ngFor="let tag of pet.tags">[{{ tag.name }}] </span>
+</div>
