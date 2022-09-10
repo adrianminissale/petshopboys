@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public pets: any;
+  public petsLength :number = 0;
+  public firstSearch :boolean = false;
 
-  ngOnInit(): void {
+  checkoutForm = this.formBuilder.group({
+    available: false,
+    pending: false,
+    sold: false
+  });
+
+  constructor(
+    private searchService: SearchService,
+    private formBuilder: FormBuilder,
+  ) { }
+
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    let status :any = this.checkoutForm.value;
+
+    // remove false values
+    Object.keys(status).forEach(key => {
+      if (!status[key]) {
+        delete status[key];
+      }
+    });
+
+    // create string
+    status = Object.keys(status).join(',');
+
+    this.searchService.getPets(status).subscribe((data)=>{
+      this.pets = data;
+      this.petsLength = Object.keys(data).length;
+      this.firstSearch = true;
+    });
   }
-
 }

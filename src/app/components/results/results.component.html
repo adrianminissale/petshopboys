@@ -1,7 +1,3 @@
 <div *ngFor="let pet of pets; index as i">
-  <h2>{{pet.name}}</h2>
-  <p>
-    {{pet.status}}
-  </p>
-  <a href="/detail/{{i}}">Pet detail</a>
+  {{pet.name}} {{pet.status}} <a href="/detail/{{i}}">Pet detail</a>
 </div>

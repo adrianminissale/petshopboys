@@ -1,1 +1,24 @@
-<p>search works!</p>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <input type="checkbox" id="available" formControlName="available" value="available">
+  <label for="available"> Available</label>
+
+  <input type="checkbox" id="pending" formControlName="pending" value="pending">
+  <label for="pending"> Pending</label>
+
+  <input type="checkbox" id="sold" formControlName="sold" value="sold">
+  <label for="sold"> Sold</label>
+
+  <button class="button" type="submit">Search</button>
+</form>
+
+<div *ngIf="!firstSearch; else searched">
+  <app-initial-state></app-initial-state>
+</div>
+<ng-template #searched>
+  <div *ngIf="petsLength; else emptyState">
+    <app-results [pets]="pets"></app-results>
+  </div>
+  <ng-template #emptyState>
+    <app-empty-state></app-empty-state>
+  </ng-template>
+</ng-template>

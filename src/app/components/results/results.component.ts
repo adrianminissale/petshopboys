@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../service/api.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
 })
-
 export class ResultsComponent implements OnInit {
-  public pets: any;
 
-  constructor(private apiService: ApiService) { }
+  @Input() pets :any;
 
-  ngOnInit() {
-    this.apiService.getPets().subscribe((data)=>{
-      this.pets = data;
-    });
+  constructor() { }
+
+  ngOnInit(): void {
   }
+
 }
