@@ -1,13 +1,13 @@
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-  <input type="checkbox" id="available" formControlName="available" value="available">
-  <label for="available"> Available</label>
-
-  <input type="checkbox" id="pending" formControlName="pending" value="pending">
-  <label for="pending"> Pending</label>
-
-  <input type="checkbox" id="sold" formControlName="sold" value="sold">
-  <label for="sold"> Sold</label>
-
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <label>
+    <input type="checkbox" formControlName="available" value="available"> Available
+  </label>
+  <label>
+    <input type="checkbox" formControlName="pending" value="pending"> Pending
+  </label>
+  <label>
+    <input type="checkbox" formControlName="sold" value="sold"> Sold
+  </label>
   <button class="button" type="submit">Search</button>
 </form>
 

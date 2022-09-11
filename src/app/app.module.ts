@@ -12,6 +12,7 @@ import { InitialStateComponent } from './components/initial-state/initial-state.
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { SearchComponent } from './components/search/search.component';
 import { ResultsComponent, DetailModal } from './components/results/results.component';
+import { CreateComponent } from './components/create/create.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ResultsComponent, DetailModal } from './components/results/results.comp
     EmptyStateComponent,
     SearchComponent,
     ResultsComponent,
-    DetailModal
+    DetailModal,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

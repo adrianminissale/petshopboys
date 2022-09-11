@@ -1,0 +1,41 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name" required>
+  </label>
+  <br>
+
+  <label>
+    Category:
+    <select formControlName="category" required>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="bird">Bird</option>
+      <option value="other">Other</option>
+    </select>
+  </label>
+  <br>
+
+  <label>
+    Status:
+    <select formControlName="status" required>
+      <option value="available">Available</option>
+      <option value="pending">Pending</option>
+      <option value="sold">Sold</option>
+    </select>
+  </label>
+  <br>
+
+  <label>
+    Tags:
+    <select formControlName="tags" multiple required>
+      <option value="friendly">Friendly</option>
+      <option value="companion">Companion</option>
+      <option value="home">Home</option>
+      <option value="guardian">Guardian</option>
+    </select>
+  </label>
+  <br>
+
+  <button class="button" type="submit">Create</button>
+</form>

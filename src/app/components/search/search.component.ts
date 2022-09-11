@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   public petsLength :number = 0;
   public firstSearch :boolean = false;
 
-  checkoutForm = this.formBuilder.group({
+  searchForm = this.formBuilder.group({
     available: false,
     pending: false,
     sold: false
@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    let status :any = this.checkoutForm.value;
+    let status :any = this.searchForm.value;
 
     // remove false values
     Object.keys(status).forEach(key => {
