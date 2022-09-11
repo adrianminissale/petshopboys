@@ -14,6 +14,7 @@ export class CreateComponent implements OnInit {
     name: '',
     category: '',
     status: '',
+    image: '',
     tags: []
   });
 

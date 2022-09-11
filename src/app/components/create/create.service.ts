@@ -20,12 +20,13 @@ export class CreateService {
         id: 0,
         name: pet.category
       },
+      photoUrls: [
+        pet.image
+      ],
       name: pet.name,
       tags: tags,
       status: pet.status
     }
-
-    console.log(pet);
 
     return this.httpClient.post(`https://petstore.swagger.io/v2/pet`, body);
   }
