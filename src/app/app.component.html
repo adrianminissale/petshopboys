@@ -21,8 +21,11 @@
 
   <div role="banner">
     <a [routerLink]="['/']">{{ title }}</a>
-    <a [routerLink]="['/login']">Login</a>
-    <a [routerLink]="['/create']">Create pet</a>
+
+    <ng-container *ngIf="isUserLogged">
+      <a [routerLink]="['/create']">Create</a>
+      <a [routerLink]="['/']" (click)="logout()">Logout</a>
+    </ng-container>
   </div>
 
   <router-outlet></router-outlet>

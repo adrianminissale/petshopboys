@@ -1,1 +1,17 @@
-<p>login works!</p>
+<h2>Login</h2>
+<form [formGroup]="loginForm">
+  <label>
+    Username:
+    <input type="text" formControlName="username" />
+  </label>
+  <br>
+  <label>
+    Password:
+    <input type="password" formControlName="password" />
+  </label>
+  <br>
+  <button (click)="onSubmit()">Login</button>
+</form>
+<ng-container *ngIf="userMessage">
+  {{userMessage}}
+</ng-container>

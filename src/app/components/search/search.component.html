@@ -1,3 +1,4 @@
+<h2>Search</h2>
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <label>
     <input type="checkbox" formControlName="available" value="available"> Available
@@ -8,17 +9,13 @@
   <label>
     <input type="checkbox" formControlName="sold" value="sold"> Sold
   </label>
+  <br>
   <button class="button" type="submit">Search</button>
 </form>
 
-<div *ngIf="!firstSearch; else searched">
-  <app-initial-state></app-initial-state>
-</div>
-<ng-template #searched>
-  <div *ngIf="petsLength; else emptyState">
-    <app-results [pets]="pets"></app-results>
-  </div>
-  <ng-template #emptyState>
-    <app-empty-state></app-empty-state>
-  </ng-template>
+<ng-container *ngIf="petsLength; else emptyState">
+  <app-results [pets]="pets"></app-results>
+</ng-container>
+<ng-template #emptyState>
+  <app-empty-state></app-empty-state>
 </ng-template>

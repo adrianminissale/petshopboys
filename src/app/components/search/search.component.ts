@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { SearchService } from './search.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +12,6 @@ export class SearchComponent implements OnInit {
 
   public pets: any;
   public petsLength :number = 0;
-  public firstSearch :boolean = false;
 
   searchForm = this.formBuilder.group({
     available: false,
@@ -45,7 +44,6 @@ export class SearchComponent implements OnInit {
       this.pets = [...new Map(data.map((m :any) => [m.id, m])).values()];
 
       this.petsLength = Object.keys(data).length;
-      this.firstSearch = true;
     });
   }
 }

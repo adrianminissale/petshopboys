@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'PetShopBoys';
+  public title :string = 'PetShopBoys';
+  public isUserLogged: boolean = false;
+
+  constructor(
+    private dataService: DataService
+  ) {
+    this.dataService.isUserLogged.subscribe( value => {
+      this.isUserLogged = value;
+    });
+  }
+
+  logout(): void {
+    this.dataService.isUserLogged.next(false);
+  }
 }
