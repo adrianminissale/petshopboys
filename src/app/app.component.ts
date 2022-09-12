@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from './services/data.service';
 
 @Component({
@@ -18,7 +18,19 @@ export class AppComponent {
     });
   }
 
+  ngOnInit(): void {
+    if (
+      localStorage.getItem('isUserLogged') &&
+      localStorage.getItem('isUserLogged') === 'true'
+    ) {
+      this.dataService.isUserLogged.next(true);
+    } else {
+      this.dataService.isUserLogged.next(false);
+    }
+  }
+
   logout(): void {
     this.dataService.isUserLogged.next(false);
+    localStorage.setItem('isUserLogged', 'false');
   }
 }

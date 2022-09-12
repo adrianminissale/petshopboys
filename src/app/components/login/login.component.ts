@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         this.userMessage = 'Username or Password incorrect';
       } else {
         this.dataService.isUserLogged.next(true);
+        localStorage.setItem('isUserLogged', 'true');
       }
       console.log(data);
     });
