@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { ResultsComponent } from './results.component';
 
@@ -8,7 +10,9 @@ describe('ResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResultsComponent ]
+      declarations: [ ResultsComponent ],
+      imports: [OverlayModule, MatDialogModule],
+      providers: [MatDialog]
     })
     .compileComponents();
 

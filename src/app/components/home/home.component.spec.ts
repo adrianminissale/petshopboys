@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DataService } from 'src/app/services/data.service';
 
 import { HomeComponent } from './home.component';
 
@@ -8,7 +9,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent ],
+      providers: [ DataService ],
     })
     .compileComponents();
 
