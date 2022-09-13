@@ -1,4 +1,3 @@
-import { DataService } from 'src/app/services/data.service';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -12,9 +11,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [
-        DataService
-      ],
+      providers: [],
     }).compileComponents();
   });
 

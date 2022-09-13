@@ -1,4 +1,3 @@
-import { DataService } from 'src/app/services/data.service';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -10,7 +9,7 @@ describe('SearchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [DataService]
+      providers: [ ]
     });
     service = TestBed.inject(SearchService);
   });

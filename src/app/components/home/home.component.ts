@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+
+import { Store } from '@ngxs/store';
+import { UserState } from 'src/app/state';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,12 @@ import { DataService } from 'src/app/services/data.service';
 export class HomeComponent implements OnInit {
 
   public isUserLogged: boolean = false;
+  public isLoggedIn = this.store.select(UserState.isLoggedIn);
 
   constructor(
-    private dataService: DataService
+    private store: Store
   ) {
-    this.dataService.isUserLogged.subscribe( value => {
+    this.isLoggedIn.subscribe( value => {
       this.isUserLogged = value;
     });
   }

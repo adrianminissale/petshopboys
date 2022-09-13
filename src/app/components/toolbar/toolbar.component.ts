@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+
+import { Store } from '@ngxs/store';
+import { User, UserState } from 'src/app/state';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,12 +11,13 @@ import { DataService } from 'src/app/services/data.service';
 export class ToolbarComponent implements OnInit {
 
   public isUserLogged: boolean = false;
+  public isLoggedIn = this.store.select(UserState.isLoggedIn);
   public title :string = '🐈 PetShopBoys';
 
   constructor(
-    private dataService: DataService
+    private store: Store
   ) {
-    this.dataService.isUserLogged.subscribe( value => {
+    this.isLoggedIn.subscribe( value => {
       this.isUserLogged = value;
     });
   }
@@ -24,14 +27,12 @@ export class ToolbarComponent implements OnInit {
       localStorage.getItem('isUserLogged') &&
       localStorage.getItem('isUserLogged') === 'true'
     ) {
-      this.dataService.isUserLogged.next(true);
-    } else {
-      this.dataService.isUserLogged.next(false);
+      this.store.dispatch(new User.Login(true));
     }
   }
 
   logout(): void {
-    this.dataService.isUserLogged.next(false);
     localStorage.setItem('isUserLogged', 'false');
+    this.store.dispatch(new User.Login(false));
   }
 }

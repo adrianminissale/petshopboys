@@ -1,6 +1,6 @@
+import { UserState } from '../../state/index';
+import { NgxsModule } from '@ngxs/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataService } from 'src/app/services/data.service';
-
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
@@ -10,7 +10,7 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ToolbarComponent ],
-      providers: [ DataService ],
+      imports: [ NgxsModule.forRoot([ UserState]) ]
     })
     .compileComponents();
 

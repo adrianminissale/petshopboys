@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DataService } from './data.service';
 
 import { LoginService } from './login.service';
 
@@ -10,7 +9,7 @@ describe('LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [DataService]
+      providers: [ ]
     });
     service = TestBed.inject(LoginService);
   });

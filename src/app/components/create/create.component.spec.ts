@@ -1,6 +1,7 @@
+import { UserState } from '../../state/index';
+import { NgxsModule } from '@ngxs/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DataService } from 'src/app/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OverlayModule } from '@angular/cdk/overlay';
 
@@ -13,8 +14,12 @@ describe('CreateComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CreateComponent ],
-      imports: [ HttpClientTestingModule, OverlayModule ],
-      providers: [ DataService, MatSnackBar ],
+      imports: [
+        HttpClientTestingModule,
+        OverlayModule,
+        NgxsModule.forRoot([ UserState])
+      ],
+      providers: [ MatSnackBar ],
     })
     .compileComponents();
 

@@ -4,7 +4,8 @@ import { Router } from '@angular/router'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CreateService } from 'src/app/services/create.service';
-import { DataService } from 'src/app/services/data.service';
+import { Store } from '@ngxs/store';
+import { UserState } from 'src/app/state';
 
 @Component({
   selector: 'app-create',
@@ -15,14 +16,15 @@ export class CreateComponent implements OnInit {
 
   public createForm!: FormGroup;
   public isUserLogged: boolean = false;
+  public isLoggedIn = this.store.select(UserState.isLoggedIn);
 
   constructor(
-    private dataService: DataService,
+    private store: Store,
     private createService: CreateService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.dataService.isUserLogged.subscribe( value => {
+    this.isLoggedIn.subscribe( value => {
       this.isUserLogged = value;
     });
   }

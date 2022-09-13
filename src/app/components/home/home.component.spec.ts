@@ -1,5 +1,6 @@
+import { UserState } from '../../state/index';
+import { NgxsModule } from '@ngxs/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataService } from 'src/app/services/data.service';
 
 import { HomeComponent } from './home.component';
 
@@ -10,7 +11,8 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      providers: [ DataService ],
+      imports: [ NgxsModule.forRoot([ UserState]) ],
+      providers: [ ],
     })
     .compileComponents();
 

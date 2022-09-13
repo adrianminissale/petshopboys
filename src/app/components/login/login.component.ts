@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { Store } from "@ngxs/store";
+import { User } from 'src/app/state';
+
 import { LoginService } from 'src/app/services/login.service';
-import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,9 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
   constructor(
-    private dataService: DataService,
     private loginService: LoginService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
         if (data.code !== 200) {
           this.snackBar.open('Username or Password incorrect!', '😢')
         } else {
-          this.dataService.isUserLogged.next(true);
+          this.store.dispatch(new User.Login(true));
           localStorage.setItem('isUserLogged', 'true');
         }
       },
