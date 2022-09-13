@@ -1,21 +1,17 @@
-<h2>Search</h2>
-<form [formGroup]="searchForm">
-  <label>
-    <input type="checkbox" formControlName="available" value="available"> Available
-  </label>
-  <label>
-    <input type="checkbox" formControlName="pending" value="pending"> Pending
-  </label>
-  <label>
-    <input type="checkbox" formControlName="sold" value="sold"> Sold
-  </label>
-  <br>
-  <button (click)="onSubmit()" [disabled]="searchForm.invalid">Search</button>
-</form>
-<ng-container *ngIf="userMessage">
-  {{ userMessage }}
-</ng-container>
+<mat-card>
+  <h2>Search</h2>
+  <form [formGroup]="searchForm">
+    <mat-checkbox formControlName="available" value="available">Available</mat-checkbox><br>
+    <mat-checkbox formControlName="pending" value="pending">Pending</mat-checkbox><br>
+    <mat-checkbox formControlName="sold" value="sold">Sold</mat-checkbox><br>
+    <br>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="searchForm.invalid">Search</button>
+  </form>
+</mat-card>
 
 <ng-container *ngIf="petsLength">
-  <app-results [pets]="pets"></app-results>
+  <br>
+  <mat-card>
+    <app-results [pets]="pets"></app-results>
+  </mat-card>
 </ng-container>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SearchService } from 'src/app/services/search.service';
 
@@ -11,12 +12,12 @@ import { SearchService } from 'src/app/services/search.service';
 export class SearchComponent implements OnInit {
 
   public pets: any;
-  public userMessage! :string;
   public petsLength :number = 0;
   public searchForm!: FormGroup;
 
   constructor(
-    private searchService: SearchService
+    private searchService: SearchService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -50,11 +51,13 @@ export class SearchComponent implements OnInit {
         this.pets = [...new Map(data.map((m :any) => [m.id, m])).values()];
 
         this.petsLength = Object.keys(data).length;
-        this.userMessage = !this.petsLength ? 'We did not find any pet :(' : '';
+        if (!this.petsLength) {
+          this.snackBar.open('We did not find any pet!', '😢');
+        }
       },
       error: (e) => {
         console.error(e);
-        this.userMessage = 'Something is wrong, try again later!';
+        this.snackBar.open('Something is wrong, try again later!', '😢');
       },
     });
   }

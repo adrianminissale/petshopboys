@@ -9,6 +9,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ResultsComponent implements OnInit {
 
   @Input() pets :any;
+  public displayedColumns: string[] = ['name', 'status', 'detail'];
 
   constructor(
     public dialog: MatDialog
@@ -21,7 +22,6 @@ export class ResultsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-
 }
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CreateService } from 'src/app/services/create.service';
 import { DataService } from 'src/app/services/data.service';
@@ -12,14 +13,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class CreateComponent implements OnInit {
 
-  public userMessage! :string;
   public createForm!: FormGroup;
   public isUserLogged: boolean = false;
 
   constructor(
     private dataService: DataService,
     private createService: CreateService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.dataService.isUserLogged.subscribe( value => {
       this.isUserLogged = value;
@@ -48,10 +49,13 @@ export class CreateComponent implements OnInit {
     let pet :any = this.createForm.value;
 
     this.createService.createPet(pet).subscribe({
-      next: () => this.userMessage = 'Pet created!',
+      next: () => {
+        this.createForm.reset();
+        this.snackBar.open('Pet created!', '👍🏻');
+      },
       error: (e) => {
         console.error(e);
-        this.userMessage = 'Something is wrong, try again later!';
+        this.snackBar.open('Something is wrong, try again later!', '😢');
       }
     });
   }

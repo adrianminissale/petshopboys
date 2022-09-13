@@ -2,7 +2,7 @@
   <span><a [routerLink]="['/']">{{ title }}</a></span>
   <span class="example-spacer"></span>
   <ng-container *ngIf="isUserLogged">
-    <span><a [routerLink]="['/create']">Create</a></span>
-    <span><a [routerLink]="['/']" (click)="logout()">Logout</a></span>
+    <span><a mat-stroked-button [routerLink]="['/create']">Create</a></span>
+    <span><a mat-stroked-button [routerLink]="['/']" (click)="logout()">Logout</a></span>
   </ng-container>
 </mat-toolbar>
