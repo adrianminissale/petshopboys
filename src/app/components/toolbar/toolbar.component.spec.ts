@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DataService } from 'src/app/services/data.service';
 
 import { ToolbarComponent } from './toolbar.component';
 
@@ -8,7 +9,8 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolbarComponent ]
+      declarations: [ ToolbarComponent ],
+      providers: [ DataService ],
     })
     .compileComponents();
 
@@ -24,6 +26,6 @@ describe('ToolbarComponent', () => {
   it(`should have as title 'PetShopBoys'`, () => {
     const fixture = TestBed.createComponent(ToolbarComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('PetShopBoys');
+    expect(app.title).toEqual('🐈 PetShopBoys');
   });
 });

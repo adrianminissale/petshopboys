@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DataService } from 'src/app/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { LoginComponent } from './login.component';
 
@@ -11,8 +13,8 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [ HttpClientTestingModule ],
-      providers: [ DataService ],
+      imports: [ HttpClientTestingModule, OverlayModule ],
+      providers: [ DataService, MatSnackBar ],
     })
     .compileComponents();
 

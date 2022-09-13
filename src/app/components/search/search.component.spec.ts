@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { SearchComponent } from './search.component';
 
@@ -10,7 +12,8 @@ describe('SearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [ HttpClientTestingModule ]
+      imports: [ HttpClientTestingModule, OverlayModule ],
+      providers: [ MatSnackBar ],
     })
     .compileComponents();
 
