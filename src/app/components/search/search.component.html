@@ -1,5 +1,5 @@
 <h2>Search</h2>
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="searchForm">
   <label>
     <input type="checkbox" formControlName="available" value="available"> Available
   </label>
@@ -10,12 +10,12 @@
     <input type="checkbox" formControlName="sold" value="sold"> Sold
   </label>
   <br>
-  <button class="button" type="submit">Search</button>
+  <button (click)="onSubmit()" [disabled]="searchForm.invalid">Search</button>
 </form>
+<ng-container *ngIf="userMessage">
+  {{ userMessage }}
+</ng-container>
 
-<ng-container *ngIf="petsLength; else emptyState">
+<ng-container *ngIf="petsLength">
   <app-results [pets]="pets"></app-results>
 </ng-container>
-<ng-template #emptyState>
-  <app-empty-state></app-empty-state>
-</ng-template>

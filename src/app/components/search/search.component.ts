@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { SearchService } from '../../services/search.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -11,22 +11,27 @@ import { SearchService } from '../../services/search.service';
 export class SearchComponent implements OnInit {
 
   public pets: any;
+  public userMessage! :string;
   public petsLength :number = 0;
-
-  searchForm = this.formBuilder.group({
-    available: false,
-    pending: false,
-    sold: false
-  });
+  public searchForm!: FormGroup;
 
   constructor(
-    private searchService: SearchService,
-    private formBuilder: FormBuilder,
+    private searchService: SearchService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      available: new FormControl(''),
+      pending: new FormControl(''),
+      sold: new FormControl('')
+    });
+  }
 
   onSubmit(): void {
+    if (this.searchForm.invalid) {
+      return;
+    }
+
     let status :any = this.searchForm.value;
 
     // remove false values
@@ -39,11 +44,18 @@ export class SearchComponent implements OnInit {
     // create string
     status = Object.keys(status).join(',');
 
-    this.searchService.getPets(status).subscribe((data :any)=>{
-      // return only unique results
-      this.pets = [...new Map(data.map((m :any) => [m.id, m])).values()];
+    this.searchService.getPets(status).subscribe({
+      next: (data :any) => {
+        // return only unique results
+        this.pets = [...new Map(data.map((m :any) => [m.id, m])).values()];
 
-      this.petsLength = Object.keys(data).length;
+        this.petsLength = Object.keys(data).length;
+        this.userMessage = !this.petsLength ? 'We did not find any pet :(' : '';
+      },
+      error: (e) => {
+        console.error(e);
+        this.userMessage = 'Something is wrong, try again later!';
+      },
     });
   }
 }

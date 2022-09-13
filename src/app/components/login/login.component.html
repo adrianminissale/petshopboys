@@ -10,8 +10,8 @@
     <input type="password" formControlName="password" />
   </label>
   <br>
-  <button (click)="onSubmit()">Login</button>
+  <button (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
 </form>
 <ng-container *ngIf="userMessage">
-  {{userMessage}}
+  {{ userMessage }}
 </ng-container>
