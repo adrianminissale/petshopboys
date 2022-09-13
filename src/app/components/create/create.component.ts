@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'
 
 import { CreateService } from 'src/app/services/create.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-create',
@@ -12,12 +14,23 @@ export class CreateComponent implements OnInit {
 
   public userMessage! :string;
   public createForm!: FormGroup;
+  public isUserLogged: boolean = false;
 
   constructor(
-    private createService: CreateService
-  ) { }
+    private dataService: DataService,
+    private createService: CreateService,
+    private router: Router
+  ) {
+    this.dataService.isUserLogged.subscribe( value => {
+      this.isUserLogged = value;
+    });
+  }
 
   ngOnInit(): void {
+    if (!this.isUserLogged) {
+      this.router.navigate(['/']);
+    }
+
     this.createForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       image: new FormControl('', [Validators.required, Validators.minLength(10)]),
