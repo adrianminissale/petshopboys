@@ -10,14 +10,14 @@ import { User, UserState } from 'src/app/state';
 })
 export class ToolbarComponent implements OnInit {
 
-  public isUserLogged: boolean = false;
-  public isLoggedIn = this.store.select(UserState.isLoggedIn);
-  public title :string = '🐈 PetShopBoys';
+  public isUserLogged!: boolean;
+  private isLoggedIn$ = this.store.select(UserState.isLoggedIn);
+  public title: string = '🐈 PetShopBoys';
 
   constructor(
     private store: Store
   ) {
-    this.isLoggedIn.subscribe( value => {
+    this.isLoggedIn$.subscribe( value => {
       this.isUserLogged = value;
     });
   }

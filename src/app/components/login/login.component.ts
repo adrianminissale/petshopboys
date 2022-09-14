@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let username :any = this.loginForm.value.username;
-    let password :any = this.loginForm.value.password;
+    let username: string = this.loginForm.value.username;
+    let password: string = this.loginForm.value.password;
 
     this.loginService.getUserLogin(username, password).subscribe({
-      next: (data :any) => {
+      next: (data: any) => {
         if (data.code !== 200) {
           this.snackBar.open('Username or Password incorrect!', '😢')
         } else {

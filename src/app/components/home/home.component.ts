@@ -10,13 +10,13 @@ import { UserState } from 'src/app/state';
 })
 export class HomeComponent implements OnInit {
 
-  public isUserLogged: boolean = false;
-  public isLoggedIn = this.store.select(UserState.isLoggedIn);
+  public isUserLogged!: boolean;
+  private isLoggedIn$ = this.store.select(UserState.isLoggedIn);
 
   constructor(
     private store: Store
   ) {
-    this.isLoggedIn.subscribe( value => {
+    this.isLoggedIn$.subscribe( value => {
       this.isUserLogged = value;
     });
   }

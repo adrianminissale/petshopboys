@@ -8,7 +8,7 @@ import { NgxsModule } from '@ngxs/store';
 
 import { environment } from 'src/environments/environment';
 
-import { UserState } from './state';
+import { UserState, PetsState } from 'src/app/state';
 
 import { MaterialModule } from 'src/material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +40,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxsModule.forRoot([ UserState ], { developmentMode: true }),
+    NgxsModule.forRoot([ UserState, PetsState ], { developmentMode: true }),
     environment.production ? [] : NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],

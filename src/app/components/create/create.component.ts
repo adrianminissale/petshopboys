@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CreateService } from 'src/app/services/create.service';
 import { Store } from '@ngxs/store';
-import { UserState } from 'src/app/state';
+import { Pet, UserState } from 'src/app/state';
 
 @Component({
   selector: 'app-create',
@@ -15,8 +15,8 @@ import { UserState } from 'src/app/state';
 export class CreateComponent implements OnInit {
 
   public createForm!: FormGroup;
-  public isUserLogged: boolean = false;
-  public isLoggedIn = this.store.select(UserState.isLoggedIn);
+  public isUserLogged!: boolean;
+  private isLoggedIn$ = this.store.select(UserState.isLoggedIn);
 
   constructor(
     private store: Store,
@@ -24,7 +24,7 @@ export class CreateComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.isLoggedIn.subscribe( value => {
+    this.isLoggedIn$.subscribe( value => {
       this.isUserLogged = value;
     });
   }
@@ -36,7 +36,7 @@ export class CreateComponent implements OnInit {
 
     this.createForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      image: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      photoUrls: new FormControl('', [Validators.required, Validators.minLength(10)]),
       category: new FormControl('', [Validators.required]),
       status: new FormControl('', [Validators.required]),
       tags: new FormControl('', [Validators.required]),
@@ -48,7 +48,7 @@ export class CreateComponent implements OnInit {
       return;
     }
 
-    let pet :any = this.createForm.value;
+    let pet: Pet = this.createForm.value;
 
     this.createService.createPet(pet).subscribe({
       next: () => {

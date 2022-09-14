@@ -1,3 +1,4 @@
+import { Pet } from 'src/app/state';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,9 +9,9 @@ export class CreateService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createPet(pet :any){
+  public createPet(pet: Pet){
 
-    const tags = pet.tags.map((tag :string, index :number) => {
+    const tags = pet.tags.map((tag, index) => {
       return {id: index, name: tag}
     })
 
@@ -21,7 +22,7 @@ export class CreateService {
         name: pet.category
       },
       photoUrls: [
-        pet.image
+        pet.photoUrls
       ],
       name: pet.name,
       tags: tags,
