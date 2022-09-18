@@ -1,0 +1,6 @@
+<ng-container *ngIf="isUserLogged; else login">
+  <app-search></app-search>
+</ng-container>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>

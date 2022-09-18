@@ -1,0 +1,17 @@
+<mat-card>
+  <h2>Search</h2>
+  <form [formGroup]="searchForm">
+    <mat-checkbox formControlName="available" value="available">Available</mat-checkbox><br>
+    <mat-checkbox formControlName="pending" value="pending">Pending</mat-checkbox><br>
+    <mat-checkbox formControlName="sold" value="sold">Sold</mat-checkbox><br>
+    <br>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="searchForm.invalid">Search</button>
+  </form>
+</mat-card>
+
+<ng-container *ngIf="petsLength">
+  <br>
+  <mat-card>
+    <app-results></app-results>
+  </mat-card>
+</ng-container>
