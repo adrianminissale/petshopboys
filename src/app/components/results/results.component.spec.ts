@@ -1,7 +1,7 @@
-import { PetsState } from '../../state/index';
+import { PetsState } from 'src/app/state';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgxsModule } from '@ngxs/store';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MaterialModule } from 'src/material.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { ResultsComponent } from './results.component';
@@ -13,8 +13,11 @@ describe('ResultsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ResultsComponent ],
-      imports: [OverlayModule, MatDialogModule, NgxsModule.forRoot([ PetsState]) ],
-      providers: [MatDialog]
+      imports: [
+        OverlayModule,
+        MaterialModule,
+        NgxsModule.forRoot([ PetsState ])
+      ],
     })
     .compileComponents();
 

@@ -1,9 +1,9 @@
-import { UserState } from '../../state/index';
+import { UserState } from 'src/app/state';
 import { NgxsModule } from '@ngxs/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { MaterialModule } from 'src/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CreateComponent } from './create.component';
 
@@ -16,10 +16,11 @@ describe('CreateComponent', () => {
       declarations: [ CreateComponent ],
       imports: [
         HttpClientTestingModule,
-        OverlayModule,
-        NgxsModule.forRoot([ UserState])
+        MaterialModule,
+        NgxsModule.forRoot([ UserState ]),
+        FormsModule,
+        ReactiveFormsModule
       ],
-      providers: [ MatSnackBar ],
     })
     .compileComponents();
 

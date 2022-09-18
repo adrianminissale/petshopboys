@@ -1,4 +1,5 @@
-import { UserState } from '../../state/index';
+import { UserState } from 'src/app/state';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -11,8 +12,8 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      imports: [ NgxsModule.forRoot([ UserState]) ],
-      providers: [ ],
+      imports: [ NgxsModule.forRoot([ UserState ]) ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
 
